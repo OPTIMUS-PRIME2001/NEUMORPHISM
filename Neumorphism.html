@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Neumorphism | CSS3</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+	<style>
+		*{margin: 0; padding: 0;}
+		html{font-size: 62.5%;}
+		body
+		{   font-family: "montserrat",sans-serif;
+		    background-color:#A698FE;
+		    font-size: 14px; font-weight: 500;
+		}
+      i{ font-size: 1.75rem;
+         color: #8891a5;
+      }
+		.block{   
+			height: 10rem; width:10rem;
+	      background-color: #9586FF;
+		}
+		.center{ 
+         margin: 0 auto;
+         height: 40rem; width: 70rem;
+			border-radius: 3rem;
+			display: flex;
+			background-color:#EDEEF7; 
+			justify-content: left;
+			align-items:center;
+			position: relative ;
+		}
+		.centerdiv{ 
+		   position: absolute;
+         margin-top: 7rem;
+			padding: 5.5rem;		 	  	   
+	  	   max-width: 400px;
+         min-width: 300px;
+	  	   display: grid;
+	  	   grid-gap: 3rem;
+	  	   grid-template-columns: repeat(8, 1fr);
+	  	   grid-template-rows: repeat(5, 1fr);
+	  	   grid-template-areas:"us str1 srch rheart heart rhrt bt1 bt1" "bt2 bt2 bt2 bkm stp swio swio char" "bt3 bt3 bt3 str2 hm swia swia char" "bs2 bs2 nhrt nav sea sea sea sea";
+		}
+      .centerdiv > *{
+         display: flex;
+         justify-content: center;
+         min-width: 5rem;
+         min-height: 5rem;
+      }
+      .centerdiv > * > *{
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+         width: 100%;
+      }
+      .centerdiv .btn-u{
+         grid-area: us; 
+         justify-content: left;
+      }
+      .centerdiv .btn-star1{
+         grid-area: str1;
+      }
+      .centerdiv .btn-star2{
+         grid-area: str2;
+      }
+      .centerdiv .btn--search{
+         grid-area: srch;
+      }
+      .centerdiv .btn-r1-heart{
+         grid-area: rheart;
+      }
+      .centerdiv .btn-r2-heart{
+         grid-area: rhrt;
+      }
+      .centerdiv .btn-sq-heart{
+         grid-area: heart;
+      }
+      .centerdiv .btn-sm-1{
+         grid-area: bt1;
+         min-width: 12rem;
+      }
+      .centerdiv .btn-sm-1 > *{
+         font-size: 16px;
+         font-weight: bold;         
+         color: rgba(0,0,0, 0.2);
+      }
+      .centerdiv .search-box{
+         grid-area: bt2;
+      }
+      .grid .search-box >*{
+         justify-content: space-between;
+         
+         }
+      .s{
+         font-size: 16px;
+         font-weight: bold;         
+         color: rgba(0,0,0, 0.2);
+      }
+      .centerdiv .input-box{
+         grid-area: bt3;
+      }
+      .centerdiv .input-box >*{
+         padding-left: 3rem;
+         justify-content: left;
+         font-size: 16px;
+         font-weight: bold;
+         color: rgba(0,0,0, 0.2);
+      }
+      .centerdiv .btn-bookmrk{
+         grid-area: bkm;
+      }
+      .centerdiv .btn-stop{
+         grid-area: stp;
+      }
+      .centerdiv .btn-u{
+         grid-area: us;
+      }
+      .centerdiv .btn-home{
+         grid-area: hm;
+      }
+      .centerdiv .switch-o{
+         grid-area: swio;
+         justify-content:center; 
+         align-items: center;
+      }
+      .centerdiv .switch-a{
+         grid-area: swia;
+         justify-content:center; 
+         align-items: center;
+      }
+      .centerdiv .btn-2item{
+         grid-area: bs2;
+      }
+      .centerdiv .btn-nav{
+         grid-area: nav;
+      }
+      .centerdiv .btn-n-heart{
+         grid-area: nhrt;
+      }
+      .n{
+        color: #a69afe; 
+      }
+      .centerdiv .chart{
+         grid-area: char;
+      }
+      .centerdiv .timeline{
+         grid-area: sea;
+      }
+      .morph{
+            border: 2px solid transparent;
+            background: linear-gradient(160deg, #f0f1f4 0%, #e4e6eb 100%);
+            box-shadow: -3px -3px 6px 2px #ffffff, 5px 5px 8px 0px rgba(0,0,0,0.17), 1px 2px 2px 0px rgba(0, 0, 0, 0.1);
+            transition: 0.15s;
+         }
+         .morph.active, .morph:active, .morph:focus{
+         border: 2px solid #fafafa;
+         outline: none;
+         box-shadow: inset -3px -3px 5px 0px #ffffff, -1px -1px 4px 0px #ffffff, inset 5px 5px 10px rgba(0,0,0,0.12), inset 2px 2px 3px 0px rgba(0, 0, 0, 0.07), 1px 2px 3px 0px rgba(0,0,0,0.1);
+         }
+         .btn{
+            padding: 1.5rem;           
+            border-radius: 5rem;
+            text-align: center;
+         }
+         .btn--square{
+            width: 5rem;
+            height: 5rem;
+            max-width: 5rem;
+            max-height: 5rem;
+            border-radius: 1.2rem;
+         }
+         .btn--round{
+            max-width: 5rem;
+            max-height: 5rem;
+            border-radius: 100%;
+         }
+         .btn-dual{
+            width: 10rem;
+            height: 5rem;
+            max-width: 10rem;
+            max-height: 5rem;
+            border-radius: 1.2rem;
+         }
+         .chart--grid {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+        .chart--item {
+            width: 30%;
+            height: 100%;
+            border: 2px solid #fff;
+            border-radius: 2rem;
+            padding-top: 15%;
+            box-sizing: border-box;
+            overflow: hidden;
+            z-index: 1;
+            align-self: flex-end;
+        }
+        .chart--item--inner {
+            background-color: #9f95d6;
+            border-radius: 2rem;
+            height: 100%;
+            opacity: 0.8;
+        }
+        .chart--item--1 {
+            height: 100%;
+        }
+        .chart--item--2 {
+            height: 100%;
+        }
+
+         .timeline--grid {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 95%;
+        }
+        .timeline--item {
+            width: 100%;
+            height: 10%;
+            border: 2px solid #fff;
+            border-radius: 2rem;
+            padding-top: 5%;
+            box-sizing: border-box;
+            overflow: hidden;
+            z-index: 1;
+            align-self: flex-end;
+        }
+        .timeline--item--inner {
+            background-color: #9f95d6;
+            border-radius: 2rem;
+            height: 200%;
+            width: 100%;
+            opacity: 0.8;
+        }
+        .timeline--item--1 {
+            height: 50%;
+        }
+
+        input[type="checkbox"].ios-checkbox {
+           display: none;
+        }
+        input[type="checkbox"].ios-checkbox + label {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 60px;
+            height: 30px;
+        }
+        input[type="checkbox"].ios-checkbox + label:before, 
+        input[type="checkbox"].ios-checkbox + label:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 30px;
+            border-radius: 60px;
+            -moz-transition: all 0.2s ease;
+            -o-transition: all 0.2s ease;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+        input[type="checkbox"].ios-checkbox + label:before {
+            background-color: #eeeeee;
+            width: 60px;
+            -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+            -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        input[type="checkbox"].ios-checkbox + label:after {
+            width: 30px;
+            background-color: #ebecf0;
+            -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        input[type="checkbox"].ios-checkbox:checked + label:before {
+            background: #9f95d6;
+        }
+        input[type="checkbox"].ios-checkbox:checked + label:after {
+            left: 30px;
+        }
+	</style>
+</head>
+<body>
+   	 <div class="block">
+   	 </div>
+   	 <div class="center">
+   	 	<div class="centerdiv">
+   	 		<div class="btn-u">
+   	 			<button class ="btn--round morph" ><i class="fas fa-user"></i></button>
+   	 		</div>
+   	 		<div class="btn-star1">
+   	 		    <button class ="btn--round morph" ><i class="fas fa-star"></i></button>
+   	 	    </div>
+   	 		<div class="btn--search">
+   	 			<a class =" btn--round morph"><i class="fas  fa-search"></i></a>
+   	 		</div>
+   	 		<div class="btn-r1-heart">
+   	 			<button class ="btn--round morph active" href="#"><i class="fas fa-heart"></i></button>
+   	 		</div>
+   	 		<div class="btn-sq-heart">
+   	 			<button class ="btn--square morph active" href="#"><i class="fas fa-heart"></i></button>
+   	 		</div>
+   	 		<div class="btn-r2-heart">
+   	 			<button class ="btn--round morph active" href="#"><i class="fas fa-heart"></i></button>
+   	 		</div>
+   	 		<div class="btn-sm-1">
+   	 			<button class ="btn morph">FOLLOW</button>
+   	 		</div>
+   	 		
+   	 		<div class ="search-box" >
+                <div><input class="btn morph active" type="search" placeholder="Search here"><i class="fas fa-search"></i></div>
+   	 		</div>
+   	 		<div class ="input-box" >
+   	 			<input class="btn morph active" placeholder="PASSWORD">
+   	 		</div>
+   	 		<div class="btn-bookmrk">
+   	 			<button class ="btn--round morph" href="#"><i class="fas fa-bookmark"></i></button>
+   	 		</div> 
+   	 		<div class="btn-stop">  	 		
+   	 			<button class ="btn--round morph" href="#"><i class="fas fa-stop"></i></button>
+   	 		</div>
+   	 		<div class="btn-star2">
+   	 			<button class ="btn--round morph" href="#"><i class="fas fa-star"></i></button>
+   	 	    </div>
+   	 		<div class="btn-home">   	 		
+   	 			<button class ="btn--round morph" href="#"><i class="fas fa-home"></i></button>
+   	 		</div>
+            <div class="switch-o">
+            	<input type="checkbox"  class="ios-checkbox" id="switch-a" >
+            	<label for="switch-a"></label>
+            </div>
+            <div class="switch-a">
+            	<input type="checkbox"  class="ios-checkbox" id="switch-o" >
+            	<label for="switch-o"></label>
+            </div>
+            <div class="btn-2item">
+            	<a class="btn-dual morph">
+            		<i class="fas fa-comment">   </i>
+            		<i class="fas fa-user"></i>
+            	</a>
+            </div>
+            <div class="btn-nav">
+   	 			<button class ="btn--square morph" href="#"><i class="fas fa-bars"></i></button>
+   	 		</div>
+            <div class="btn-n-heart">
+               <button class ="btn--square morph" href="#"><i class="fas fa-heart n"></i></button>
+            </div>
+   	 		<div class="chart">
+   	 			<a class="chart--grid active">
+   	 				<div class="chart--item--inner"></div>
+   	 			</a>
+   	 		</div>
+            <div class="chart">
+               <ul class="chart--grid">
+                  <li class="chart--item chart--item--1 morph active">
+                     <div class="chart--item--inner"></div>
+                  </li>
+                  <li class="chart--item chart--item--2 morph active">
+                     <div class="chart--item--inner"></div>
+                  </li>
+               </ul>          
+            </div>
+            <div class="timeline">
+               <ul class="timeline--grid">
+                  <li class="timeline--item timeline--item--1 morph active">
+                     <div class="timeline--item--inner"></div>
+                  </li>
+               </ul>          
+            </div>
+   	 	</div>
+   	</div>
+</body>
+</html>
