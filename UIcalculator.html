@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Dark and Light theme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="UIstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:weight@300;400;500;600&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="main">
+        <div class="heading">
+            <span><i class="fas fa-bars"></i></span>
+            <span>Calculator</span>
+            <span>
+                <input type="checkbox" id="checkbox">
+    	           <label for="checkbox" class="label">
+    		          <i class="fas fa-moon"></i>
+    		          <i class="fas fa-sun"></i>
+    		          <div class="ball"></div>
+    	           </label>
+            </span>
+        </div>
+        <div class="result">
+            <div class="history">
+                <p class="upper-value">0</p>
+            </div>
+            <div class="output">
+                <p class="lower-value">0</p>
+            </div>
+        </div>
+        <div class="keyboard">
+            <div class="keygrids">
+                <div class="top-section">
+                    <button class="operator" id="clear">C</button>
+                    <button class="operator" id="backspace">
+                        <i class="fas fa-backspace"></i>
+                    </button>
+                    <button class="operator" id="%">%</button>
+                </div>
+                <div class="middle-num-section">
+                    <div>
+                        <button class="number" id="7">7</button>
+                        <button class="number" id="8">8</button>
+                        <button class="number" id="9">9</button>
+                    </div>
+                    <div>
+                        <button class="number" id="4">4</button>
+                        <button class="number" id="5">5</button>
+                        <button class="number" id="6">6</button>
+                    </div>
+                    <div>
+                        <button class="number" id="7">1</button>
+                        <button class="number" id="8">2</button>
+                        <button class="number" id="9">3</button>
+                    </div>
+                    <div>
+                        <button class="number" id="()">( )</button>
+                        <button class="number" id="0">0</button>
+                        <button class="number" id=".">.</button>
+                    </div>
+                </div>                
+            </div>
+            <div class="rt-side-section">
+                <button class="operator" id="/">/</button>
+                <button class="operator" id="*">x</button>
+                <button class="operator" id="-">-</button>
+                <button class="operator" id="+">+</button>
+                <button class="operator equal" id="=">=</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let checkbox = document.getElementById('checkbox');
+        checkbox.addEventListener('change', function(){
+            if(this.checked){
+                document.documentElement.setAttribute('data-theme', 'dark');
+           }
+            else{
+                document.documentElement.setAttribute('data-theme', 'light');
+           }
+        });
+        function getHistory(){
+           return document.getElementById('upper-value').innerText;
+        }
+        function printHistory(num){
+            document.getElementById("upper-value").innerText=num;
+        }
+        function getOutput(){
+            return document.getElementById("lower-value").innerText;
+        }
+        function printOutput(num){
+            if(num==""){
+                document.getElementById("lower-value").innerText=num;
+           }
+            else{
+                document.getElementById("lower-value").innerText=getFormattedNumber(num);
+            } 
+        }                                                                                                                 
+
+        function getFormattedNumber(num){
+            if(num=="-"){
+                return "";
+            }
+            var n = Number(num);
+            var value = n.toLocaleString("en");
+            return value;
+        }
+        function reverseNumberFormat(num){
+            return Number(num.replace(/,/g,''));
+        }
+
+        var operator = document.getElementsByClassName("operator");
+        for(var i=0;i<operator.length;i++){
+        operator[i].addEventListener('click',function(){
+            if(this.id=="clear"){
+                printHistory("");
+                printOutput("");
+            }                                                                                                                  
+            else if(this.id=="backspace"){
+                var output = reverseNumberFormat(getOutput()).toString();
+                if(output){
+                    output = output.substr(0,output.length-1);
+                    printOutput(output);
+                }
+            }
+            else{
+                var output = getOutput();
+                var history = getHistory();
+                if(output=="" && history!=""){
+                    if(isNaN(history[history.length-1])){
+                        history = history.substr(0,history.length-1);
+                    }
+                }                                                                                                                  
+                if(output!="" || history!=""){
+                    output = output=="" ? output : reverseNumberFormat(output);
+                    history = history+output;
+                    if(this.id=="="){
+                        var result=eval(history);
+                        printOutput(result);
+                        printHistory("");
+                    }
+                    else if(this.id=="%"){
+                        var n = reverseNumberFormat(getOutput());
+                        var percent = n / 100;
+                        printOutput(percent.toFixed(4));
+                    }
+                    else{
+                        history=history+this.id;
+                        printHistory(history);
+                        printOutput("");
+                    }
+                }
+            }
+        });
+       }
+
+        var number = document.getElementsByClassName("number");
+        for(var i=0;i<number.length;i++){
+            number[i].addEventListener('click',function(){
+                 var output=reverseNumberFormat(getOutput());
+                //if output is a number
+                if(output!=NaN){
+                    output=output+this.id;
+                    printOutput(output);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
